@@ -1,0 +1,43 @@
+{
+  "name": "BoxingRobotServer",
+  "version": "0.1.0",
+  "description": "Boxing Robots REST API",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --experimental-json-modules index.js",
+    "nodemon": "npx nodemon --experimental-json-modules index.js --exec babel-node",
+    "mongo": "mongod --config /usr/local/etc/mongod.conf",
+    "mongo:up": "docker-compose up -d",
+    "mongo:down": "docker-compose down"
+  },
+  "author": "Mike Walters",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.6.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.12",
+    "nodemailer": "^6.7.0",
+    "nodemailer-express-handlebars": "^3.3.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "socket.io": "^2.4.1",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/node": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "babel-loader": "^8.2.3",
+    "eslint": "^8.1.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.25.2"
+  }
+}
