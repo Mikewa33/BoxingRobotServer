@@ -1,0 +1,90 @@
+{
+    "robots":[
+        {
+            "name": "Robot 1",
+            "type": "Tank",
+            "id": 0,
+            "image": "assets/images/sprites/robosheet.png",
+            "health": 1000,
+            "strength": 20,
+            "agility": 10,
+            "ai": 10,
+            "defense": 20
+        },
+        {
+            "name": "Robot 2",
+            "type": "Speedy",
+            "id": 1,
+            "image": "assets/images/sprites/robosheet.png",
+            "health": 1000,
+            "strength": 10,
+            "agility": 20,
+            "ai": 20,
+            "defense": 10
+        },
+        {
+            "name": "Robot 3",
+            "type": "Defender",
+            "id": 2,
+            "image": "assets/images/sprites/robosheet.png",
+            "health": 1000,
+            "strength": 10,
+            "agility": 10,
+            "ai": 20,
+            "defense": 20
+        },
+        {
+            "name": "Robot 4",
+            "type": "Attacker",
+            "id": 3,
+            "image": "assets/images/sprites/robosheet.png",
+            "health": 1000,
+            "strength": 20,
+            "agility": 20,
+            "ai": 10,
+            "defense": 10
+        }
+    ],
+    "parts": [
+        {
+            "name": "Buzzsaw",
+            "id": 0,
+            "image": "assets/images/sprites/robosheet.png",
+            "health": 0,
+            "strength": 5,
+            "agility": 0,
+            "ai": 0,
+            "defense": 5
+        },
+        {
+            "name": "Sword",
+            "id": 1,
+            "image": "assets/images/sprites/robosheet.png",
+            "health": 0,
+            "strength": 5,
+            "agility": 5,
+            "ai": 0,
+            "defense": 0
+        },
+        {
+            "name": "Shield",
+            "id": 2,
+            "image": "assets/images/sprites/robosheet.png",
+            "health": 50,
+            "strength": 0,
+            "agility": 0,
+            "ai": 0,
+            "defense": 5
+        },
+        {
+            "name": "AI Chip",
+            "id": 3,
+            "image": "assets/images/sprites/robosheet.png",
+            "health": 0,
+            "strength": 0,
+            "agility": 0,
+            "ai": 5,
+            "defense": 5
+        }
+    ]
+}

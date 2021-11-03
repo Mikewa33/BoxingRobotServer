@@ -10,7 +10,6 @@ passport.use('signup', new localStrategy.Strategy({
   passwordField: 'password',
   passReqToCallback: true,
 }, async (request, email, password, done) => {
-  console.log("SIGN UP")
   try {
     const { username } = request.body;
     const user = await UserModel.create({ email, password, username });

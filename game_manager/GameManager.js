@@ -31,10 +31,6 @@ export default class GameManager {
           socket.emit('invalidToken');
         }
       });
-
-      // player connected to our game
-      console.log('player connected to our game');
-      console.log(socket.id);
     });
   }
 }

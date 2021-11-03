@@ -17,6 +17,7 @@ const __dirname = dirname(__filename);
 
 import routes from './routes/main.js';
 import passwordRoutes from './routes/password.js';
+import gameRoutes from './routes/game.js';
 import GameManager from './game_manager/GameManager.js';
 
 // setup mongo connection
@@ -71,7 +72,7 @@ app.get('/', (request, response) => {
 // setup routes
 app.use('/', routes);
 app.use('/', passwordRoutes);
-//app.use('/', passport.authenticate('jwt', { session: false }), secureRoutes);
+app.use('/', passport.authenticate('jwt', { session: false }), gameRoutes);
 
 // catch all other routes
 app.use((request, response) => {
