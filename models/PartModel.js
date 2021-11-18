@@ -8,7 +8,7 @@ const PartSchema = new Schema({
     type: Schema.type.ObjectId,
     ref: "User",
   },
-  nft_id: {
+  nftId: {
     type: String,
     required: true,
     unqiue: true,

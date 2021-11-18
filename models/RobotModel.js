@@ -8,7 +8,7 @@ const RobotSchema = new Schema({
     type: Schema.type.ObjectId,
     ref: "User",
   },
-  nft_id: {
+  nftId: {
     type: String,
     required: true,
     unqiue: true,
@@ -36,6 +36,9 @@ const RobotSchema = new Schema({
   defense: {
     type: Number,
     required: true,
+  },
+  trainingTime: {
+      type: Date
   }
 });
 

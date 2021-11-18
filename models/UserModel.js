@@ -24,6 +24,9 @@ const UserSchema = new Schema({
   resetTokenExp: {
     type: Date,
   },
+  walletUrl: {
+    type: String
+  }
 });
 
 UserSchema.pre('save', async function (next) {

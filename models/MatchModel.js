@@ -4,19 +4,19 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const MatchSchema = new Schema({
-  robot_1: {
+  robot1: {
     type: Schema.type.ObjectId,
     ref: "Robot",
   },
-  robot_2: {
+  robot2: {
     type: Schema.type.ObjectId,
     ref: "Robot",
   },
   turns: [{
-    turn_number: String,
-    turn_action_robot_1: String,
-    turn_action_robot_2: String,
-    turn_action_text: String,
+    turnNumber: String,
+    turnActionRobot1: String,
+    turnActionRobot2: String,
+    turnActionText: String,
     _id: false
   }]
 });
