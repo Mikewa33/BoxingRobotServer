@@ -1,12 +1,20 @@
+import NFTWallet from './NFTWallet.js';
+
 import MatchManager from './MatchManager.js';
 
 export default class TournamentManager {
-    constructor(robots) {
+    constructor(robots, userRobot) {
         this.robots = robots;
         this.matches = [];
+        this.instance = null;
+        this.account = null;
+        this.userRobot = userRobot;
+        this.nftWallet = null;
     }
 
-    setUpMatches() {
+    async setUpMatches() {
+        this.nftWallet = new NFTWallet();
+        await this.nftWallet.initContract();
         this.robots.forEach(robotOne => {
             this.robots.forEach(robotTwo => {
                 if(robotOne.id != robotTwo.id) {
@@ -15,19 +23,29 @@ export default class TournamentManager {
                     }
                 }
             })
-        })
+        });
+        await this.runMatches();
     }
 
-    runMatches() {
+    async runMatches() {
+        let matchData = []
         this.matches.forEach(match => {
-            match.robotOne.health = 1000;
-            match.robotTwo.health = 1000;
+            match.robotOne.health = 300;
+            match.robotTwo.health = 300;
             let newMatch = new MatchManager(match.robotOne, match.robotTwo);
             newMatch.startMatch();
             match.turns = newMatch.turns;
             match.winner = newMatch.winner;
+            matchData.push(match);
+            if (match.robotOne.id == this.userRobot.id || match.robotTwo.id == this.userRobot.id) {
+                if (match.winner.id == this.userRobot.id) {
+                    this.nftWallet.updateWinnerRecord(this.nftWallet.instance, this.nftWallet.account, this.userRobot.id);
+                } else {
+                    this.nftWallet.updateLoserRecord(this.nftWallet.instance, this.nftWallet.account, this.userRobot.id);
+                }
+            }
         });
-       
+        this.matches = matchData;
     };
 
 }

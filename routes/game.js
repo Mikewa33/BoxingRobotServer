@@ -5,6 +5,8 @@ import TournamentModel from '../models/TournamentModel.js';
 
 import TournamentManager from '../game_manager/TournamentManager.js';
 
+import NFTWallet from '../game_manager/NFTWallet.js';
+
 const router = express.Router();
 
 router.get('/battle-logs', async (request, response) => {
@@ -13,18 +15,30 @@ router.get('/battle-logs', async (request, response) => {
 });
 
 router.post('/training', async (request, response) => {
-    const { id } = request.user;
+    const { _id } = request.user;
     const { botId } = request.body;
 
     let newTraining = new TrainingModel();
-    newTraining.userId = request.user.id;
+    console.log(newTraining)
+    let nftWallet = new NFTWallet();
+    await nftWallet.initContract();
+    console.log("WALLET CONNECTION");
+    console.log(request)
+    newTraining.userId = _id;
     newTraining.robotId = botId;
-    newTraining.trainingEnd = new Date().getTime() + 86400000;
+    newTraining.trainingEnd = new Date().getTime();
+    console.log("UGH")
+    console.log(newTraining)
     newTraining.save(function (err) {
         if (err) {
+            console.log(err)
             response.status(500).json({ message: err, status: 500 });
         } 
         else {
+            nftWallet.updateRobotStrength(nftWallet.instance, nftWallet.account, botId, 5);
+            nftWallet.updateRobotAgility(nftWallet.instance, nftWallet.account, botId, 5);
+            nftWallet.updateRobotAi(nftWallet.instance, nftWallet.account, botId, 5);
+            nftWallet.updateRobotDefense(nftWallet.instance, nftWallet.account, botId, 5);
             response.status(200).json({ message: 'ok', status: 200 });
         };
     });
@@ -42,22 +56,22 @@ router.post('/set-battle', async (request, response) => {
     // Generate fake bots
     let bots = [
         bot, 
-        { "id": 12322, "health": 1000, "ai": 20, "agility": 10, "strength": 10, "defense": 10},
-        { "id": 12321, "health": 1000, "ai": 10, "agility": 20, "strength": 10, "defense": 10}, 
-        { "id": 12323, "health": 1000, "ai": 10, "agility": 10, "strength": 20, "defense": 10}
+        { "id": 12322, "health": 300, "ai": 20, "agility": 10, "strength": 10, "defense": 10},
+        { "id": 12321, "health": 300, "ai": 10, "agility": 20, "strength": 10, "defense": 10}, 
+        { "id": 12323, "health": 300, "ai": 10, "agility": 10, "strength": 20, "defense": 10}
     ]
     let newTournament = new TournamentModel();
     newTournament.robotId = bot.id;
 
-    let tournament = new TournamentManager(bots);
-    tournament.setUpMatches();
-    tournament.runMatches();
+    let tournament = new TournamentManager(bots, bot);
+    await tournament.setUpMatches();
     newTournament.matches = tournament.matches;
     newTournament.save(function (err) {
         if (err) {
             response.status(500).json({ message: err, status: 500 });
         } 
         else {
+            console.log("RETURNING")
             response.status(200).json({ message: 'ok', status: 200, matches: newTournament.matches });
         };
     })
