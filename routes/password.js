@@ -6,7 +6,7 @@ import crypto from 'crypto';
 
 import UserModel from '../models/UserModel.js';
 
-const email = process.env.EMAIL;
+/*const email = process.env.EMAIL;
 const password = process.env.PASSWORD;
 
 const smtpTransport = nodemailer.createTransport({
@@ -15,7 +15,7 @@ const smtpTransport = nodemailer.createTransport({
     user: email,
     pass: password,
   },
-});
+});*/
 
 const handlebarsOptions = {
   viewEngine: {
@@ -28,7 +28,7 @@ const handlebarsOptions = {
   extName: '.html',
 };
 
-smtpTransport.use('compile', hbs(handlebarsOptions));
+//smtpTransport.use('compile', hbs(handlebarsOptions));
 
 const router = express.Router();
 
