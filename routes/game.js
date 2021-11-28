@@ -19,16 +19,11 @@ router.post('/training', async (request, response) => {
     const { botId } = request.body;
 
     let newTraining = new TrainingModel();
-    console.log(newTraining)
     let nftWallet = new NFTWallet();
     await nftWallet.initContract();
-    console.log("WALLET CONNECTION");
-    console.log(request)
     newTraining.userId = _id;
     newTraining.robotId = botId;
     newTraining.trainingEnd = new Date().getTime();
-    console.log("UGH")
-    console.log(newTraining)
     newTraining.save(function (err) {
         if (err) {
             console.log(err)
@@ -71,7 +66,6 @@ router.post('/set-battle', async (request, response) => {
             response.status(500).json({ message: err, status: 500 });
         } 
         else {
-            console.log("RETURNING")
             response.status(200).json({ message: 'ok', status: 200, matches: newTournament.matches });
         };
     })

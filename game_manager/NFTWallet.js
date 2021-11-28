@@ -12,7 +12,6 @@ export default class NFTWallet {
     }
 
     async initContract(){
-        console.log("Starting connect")
         // Check the Celo network ID
         const networkId = await this.web3.eth.net.getId();
         const deployedNetwork = RobotContract.networks[networkId];
